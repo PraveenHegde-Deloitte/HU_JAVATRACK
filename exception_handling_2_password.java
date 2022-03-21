@@ -32,7 +32,7 @@ public class exception_handling_2_password
         boolean upperCheck = false;
         boolean lowerCheck = false;
         boolean digitCheck = false;
-        boolean spcharCheck = false;
+        boolean  specialCharacterCheck =false;
         for (char c : password.toCharArray())
         {
             if (Character.isUpperCase(c))
@@ -48,6 +48,10 @@ public class exception_handling_2_password
             {
                 digitCheck = true;
             }
+            if((password.contains("@")||password.contains("#")||password.contains("&")||password.contains("%")||password.contains("*")||password.contains("!")))
+            {
+                specialCharacterCheck = true;
+            }
         }
 
         if (!upperCheck) {
@@ -60,6 +64,10 @@ public class exception_handling_2_password
 
         if (!digitCheck) {
             throw new PasswordException ("digit missing");
+        }
+        if(specialCharacterCheck == false)
+        {
+            throw new PasswordException("special char missing");
         }
 
         System.out.println("Valid password.");
